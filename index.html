@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="validationApp">
+<head>
+	<meta charset="utf-8">
+	<title>Registration page</title>
+	<link rel="stylesheet" type="text/css" href="app/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="app/css/style.css">
+	<script src="node_modules/lodash/lodash.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+	<div class="questionnaire">
+		<form name="userForm" novalidate>
+			<div class="form-group">
+				<label>Name:</label>
+				<input type="text" name="username" ng-model="username" class="form-control" placeholder="Enter your name" required ng-model-options="{updateOn: 'blur'}" username>
+				<p ng-show="userForm.username.$error.minlength" class="help-block">Your name is too short.</p>
+				<p ng-show="userForm.username.$error.username" class="help-block">You can enter only letters, capitalize the 1st letter.</p>
+			</div> 
+			<div class="form-group">
+				<label>Age:</label>
+				<input type="text" ng-model="age" name="age" class="form-control" placeholder="Enter your age" required ng-model-options="{updateOn: 'blur'}" age>
+				<p ng-show="userForm.age.$error.age" class="help-block">You should be older then 18 and younger then 65.</p>
+			</div> 
+			<div class="form-group">
+				<label>Date:</label>
+				<input type="text" ng-model="date" name="date" class="form-control" placeholder="Enter the date in day-month-year order" required ng-model-options="{updateOn: 'blur'}" date>
+				<p ng-show="userForm.date.$error.date" class="help-block">Incorrect date format. Use day-month-year order.</p>
+			</div>
+		</form>
+		<p class="lead">Hi, {{username}}!</p>
+		<p class="lead">Your age is {{age}}.</p>
+		<p class="lead">The chosen date is {{date}}.</p>
+	</div>
+	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="app/js/validator.js"></script>
+</body>
+</html>
